@@ -98,6 +98,7 @@ SongList::~SongList()
 
 void SongList::DeleteSong(Song *s) {
 	Song *ptr = head;
+	Song *tbd = head;
 	if (ptr->title == s->title && ptr->artist == s->artist) {
 		head = ptr->next;
 		delete ptr;
@@ -105,8 +106,9 @@ void SongList::DeleteSong(Song *s) {
 	}
 	while (ptr != NULL) {
 		if (ptr->next->title == s->title && ptr->next->artist == s->artist) {
+			tbd = ptr->next;
 			ptr->next = ptr->next->next;
-			delete ptr;
+			delete tbd;
 			return;
 		}
 	}
